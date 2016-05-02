@@ -9,6 +9,9 @@ alias lcat="pygmentize -g" # install python-pygments from your package manager; 
 # public ip
 alias publicip="curl https://api.ipify.org"
 
+# Speedtest
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+
 # Local ip address
 localip() {
     interfaces=($(ifconfig | grep 'Link encap' | awk -F' ' '{print $1}'))
