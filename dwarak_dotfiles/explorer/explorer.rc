@@ -1,0 +1,9 @@
+mkcd () {
+    mkdir "$1"
+    cd "$1"
+}
+
+alias cd..2="cd ../.."
+alias cd..3="cd ../../.."
+alias cd..4="cd ../../../.."
+alias cd..5="cd ../../../../.."

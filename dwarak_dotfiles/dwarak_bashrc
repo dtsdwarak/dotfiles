@@ -1,0 +1,4 @@
+source $HOME/dwarak_dotfiles/sh.rc
+
+#Correct spelling errors
+shopt -q -s cdspell
