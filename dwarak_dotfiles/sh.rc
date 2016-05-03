@@ -35,5 +35,14 @@ alias hosts='sudo vim /etc/hosts'
 # Lock screen
 alias afk="i3lock -c 000000"
 
+# Top
+alias top="htop"
+
+# Limit ping to 5 requests
+alias ping='ping -c 5'
+
+# List all listening ports-programs
+alias ports='netstat -tulanp'
+
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
 source $HOME/dwarak_dotfiles/git/git.rc

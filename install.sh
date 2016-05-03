@@ -1,5 +1,5 @@
 # Install dependencies
-apt-get -y install python-pip i3lock vim
+apt-get -y install python-pip i3lock vim htop
 pip install Pygments
 
 #Copy files
