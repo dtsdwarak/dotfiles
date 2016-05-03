@@ -3,6 +3,10 @@ mkcd () {
     cd "$1"
 }
 
+# Experimental
+alias cd='pushd > /dev/null'
+alias back='popd > /dev/null'
+
 alias cd..2="cd ../.."
 alias cd..3="cd ../../.."
 alias cd..4="cd ../../../.."
