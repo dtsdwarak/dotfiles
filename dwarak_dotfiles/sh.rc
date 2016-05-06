@@ -20,6 +20,15 @@ localip() {
     done
 }
 
+# To view json files in pretty format and syntax highlight
+jsonview() {
+    if [ -z "$1" ]; then
+        echo "jsonview: Input file missing. Please provide one."
+    else
+        python -mjson.tool $1 | pygmentize -l json
+    fi
+}
+
 # copy file interactive
 alias cp='cp -i'
 
