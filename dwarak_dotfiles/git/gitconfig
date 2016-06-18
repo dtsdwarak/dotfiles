@@ -6,3 +6,5 @@
 [alias]
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 	url = config --get remote.origin.url
+    comdiff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
+    co = checkout

@@ -25,7 +25,10 @@ fi
 # Pull vim configs over
 if [[ -z $(grep "vim.rc" $HOME/.vimrc) ]];
 then
-    echo 'source $HOME/dwarak_dotfiles/vim/vim.rc' >> $HOME/.vimrc
+    echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
 fi
+
+# Install gitconfig
+cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
 
 echo "Install successful. Open a new terminal to see changes. :-) "

@@ -1,7 +1,0 @@
-# To view the diff within a commit - Git Commit diff
-function gcdiff() {
-	git diff-tree --no-commit-id --name-only -r $1
-}
-
-# Aliases
-alias co="git checkout"
