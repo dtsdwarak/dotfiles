@@ -29,11 +29,24 @@ jsonview() {
     fi
 }
 
+# To shorten urls
+# For more information on Bitly URL shortening, read the documentation https://dev.bitly.com/links.html#v3_shorten
+bitly() {
+    if [ -z "$1" ]; then
+        echo "bitly: Enter URL to shorten"
+    else
+        curl -s "https://api-ssl.bitly.com/v3/shorten?access_token=$ACCESS_TOKEN&longUrl=$1" | python -mjson.tool | grep -w "url"
+    fi
+}
+
 # copy file interactive
 alias cp='cp -i'
 
 # move file interactive
 alias mv='mv -i'
+
+# colorized ls
+alias ls='ls -GpFh'
 
 # untar
 alias untar='tar xvf'
