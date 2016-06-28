@@ -66,4 +66,8 @@ alias ping='ping -c 5'
 # List all listening ports-programs
 alias ports='netstat -tulanp'
 
+# Managing shell history
+export HISTCONTROL = ignoredups
+export HISTSIZE = 1000
+
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
