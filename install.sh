@@ -28,6 +28,19 @@ then
     echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
 fi
 
+# Copy .profile settings
+echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
+if [[ -z $(grep "~/.profile" $HOME/.bash_profile) ]];
+then
+    echo 'source ~/.profile' >> $HOME/.bash_profile
+fi
+
+if [[ -z $(grep "~/.profile" $HOME/.zlogin) ]];
+then
+    echo 'source ~/.profile' >> $HOME/.zlogin
+fi
+#===============
+
 # Install gitconfig
 cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
 
