@@ -39,6 +39,15 @@ bitly() {
     fi
 }
 
+# Pushbullet API push mechanism
+pushb() {
+curl -s --header 'Access-Token: '$PUSH_BULLET_ACCESS_TOKEN \
+     --header 'Content-Type: application/json' \
+     --data-binary '{"body":"'"$2"'","title":"'"$1"'","type":"note"}' \
+     --request POST \
+     https://api.pushbullet.com/v2/pushes > /dev/null
+}
+
 # copy file interactive
 alias cp='cp -i'
 
