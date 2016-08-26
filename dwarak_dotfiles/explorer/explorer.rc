@@ -7,11 +7,3 @@ mkcd () {
 alias cd='pushd > /dev/null'
 alias back='popd > /dev/null'
 
-# For Traversing up the directory structure. Thanks to http://stackoverflow.com/a/17030976
-cdup() {
-    if [ -z "$1" ]; then
-            echo "CDUP ERROR: Enter the number of directories"
-    else
-            cd $(printf '%0.s../' $(seq 1 $1))
-    fi
-}

@@ -1,14 +1,14 @@
 [user]
-	    email = dtsdwarakm@hotmail.com
-		name = Dwaraka Nath
+    email = dwarakam@amazon.com
+	name = Dwaraka Nath
 [color]
-        ui = auto
+    ui = auto
 [push]
-        default = simple
+	default = simple
 [alias]
-        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
-		slog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-        url = config --get remote.origin.url
-        comdiff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
-        co = checkout
-		user = "!f() { git config user.name; git config user.email; }; f"
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+	slog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    url = config --get remote.origin.url
+    comdiff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
+    co = checkout
+    user = "!f() { git config user.name; git config user.email; }; f"

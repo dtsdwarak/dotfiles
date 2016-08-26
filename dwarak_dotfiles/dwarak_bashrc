@@ -1,4 +1,21 @@
 source $HOME/dwarak_dotfiles/sh.rc
 
-#Correct spelling errors
+# Correct spelling errors
 shopt -q -s cdspell
+
+# Terminal prompt
+export PS1='\[\e[1;32m\]\w \[\e[1;36m\]$(val=(```git branch 2>/dev/null | grep "*" | colrm 1 2```); if [ ! -z "$val" ]; then echo "($val) "; fi)\[\e[1;32m\]$ \[\e[m\]' # Guide to setting up your own PS1 variable : http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html
+
+# For Traversing up the directory structure in bash. Thanks to http://stackoverflow.com/a/17030976
+cd..() {
+    if [ -z "$1" ]; then
+            echo "cd ERROR: Enter the number of directories to wish to go up"
+    else
+            cd $(printf '%0.s../' $(seq 1 $1))
+    fi
+}
+
+# Managing shell history
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000
+

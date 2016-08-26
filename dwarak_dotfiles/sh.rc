@@ -2,7 +2,6 @@
 
 alias projects="cd ~/projects"
 alias sublime="/opt/sublime_text/sublime_text" #For sublime-text
-export PS1='\[\e[1;32m\]\w $ \[\e[m\]' # Guide to setting up your own PS1 variable : http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html
 alias pys="python -m SimpleHTTPServer" # To run a temp server in your current folder
 alias lcat="pygmentize -g" # install python-pygments from your package manager; Colorize your cat output
 
@@ -16,7 +15,7 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 localip() {
     interfaces=($(ifconfig | grep 'Link encap' | awk -F' ' '{print $1}'))
     for i in ${interfaces[@]}; do
-        echo "$i - $(ifconfig $i | grep "inet addr" | awk -F':' '{print $2}' | awk -F' ' '{print $1}')"
+    	echo "$i - $(ifconfig $i | grep "inet addr" | awk -F':' '{print $2}' | awk -F' ' '{print $1}')"
     done
 }
 
@@ -55,7 +54,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # colorized ls
-alias ls='ls -GpFh'
+alias ls='ls --color=auto -GpFh'
 
 # untar
 alias untar='tar xvf'
@@ -74,9 +73,5 @@ alias ping='ping -c 5'
 
 # List all listening ports-programs
 alias ports='netstat -tulanp'
-
-# Managing shell history
-export HISTCONTROL = ignoredups
-export HISTSIZE = 1000
 
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
