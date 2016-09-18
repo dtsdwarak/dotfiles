@@ -12,3 +12,4 @@
     comdiff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
     co = checkout
     user = "!f() { git config user.name; git config user.email; }; f"
+    latest = "!f() { git slog | head -${1:-5}; }; f"
