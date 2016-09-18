@@ -1,4 +1,6 @@
-# Aliases
+#=====================================
+# ALIASES
+#=====================================
 
 alias projects="cd ~/projects"
 alias sublime="/opt/sublime_text/sublime_text" #For sublime-text
@@ -10,6 +12,37 @@ alias publicip="curl https://api.ipify.org"
 
 # Speedtest
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+
+# copy file interactive
+alias cp='cp -i'
+
+# move file interactive
+alias mv='mv -i'
+
+# colorized ls
+alias ls='ls -GpFh'
+
+# untar
+alias untar='tar xvf'
+
+# hosts
+alias hosts='sudo vim /etc/hosts'
+
+# Lock screen
+alias afk="i3lock -c 000000"
+
+# Top
+alias top="htop"
+
+# Limit ping to 5 requests
+alias ping='ping -c 5'
+
+# List all listening ports-programs
+alias ports='netstat -tulanp'
+
+#=====================================
+# FUNCTIONS
+#=====================================
 
 # Local ip address
 localip() {
@@ -47,31 +80,18 @@ curl -s --header 'Access-Token: '$PUSH_BULLET_ACCESS_TOKEN \
      https://api.pushbullet.com/v2/pushes > /dev/null
 }
 
-# copy file interactive
-alias cp='cp -i'
+# To execute everytime before a prompt
+function PS1_curDir() {
+    curDir="${PWD/#$HOME/~}" # Thanks to http://stackoverflow.com/a/25944070
+    pwdPathSize=50
+    if [ "$(echo "$curDir" | wc -c)" -gt $pwdPathSize ];
+    then
+        curDir="$( echo $curDir | awk -F'/' '{print $1"/"$2"/.../"$(NF-1)"/"$NF }' )"
+    fi
+}
 
-# move file interactive
-alias mv='mv -i'
-
-# colorized ls
-alias ls='ls --color=auto -GpFh'
-
-# untar
-alias untar='tar xvf'
-
-# hosts
-alias hosts='sudo vim /etc/hosts'
-
-# Lock screen
-alias afk="i3lock -c 000000"
-
-# Top
-alias top="htop"
-
-# Limit ping to 5 requests
-alias ping='ping -c 5'
-
-# List all listening ports-programs
-alias ports='netstat -tulanp'
+#=====================================
+# SOURCING OTHER CONFIG FILES
+#=====================================
 
 source $HOME/dwarak_dotfiles/explorer/explorer.rc

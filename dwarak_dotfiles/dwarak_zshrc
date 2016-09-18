@@ -1,13 +1,16 @@
 source $HOME/dwarak_dotfiles/sh.rc
+
 setopt PROMPT_SUBST # To execute function inside PS1. Refer this- http://superuser.com/a/142114
-export PS1=$'\e[1;32m%~\e[1;36m $(val=(```git branch 2>/dev/null | grep "*" | colrm 1 2```); if [ ! -z "$val" ]; then echo "($val) "; fi)\e[1;32m$ \e[0m' # For help refer here: http://www.nparikh.org/unix/prompt.php
+
+function precmd() { 
+    PS1_curDir
+}
+
+# For help refer here: http://www.nparikh.org/unix/prompt.php
+export PS1=$'\e[1;32m$curDir\e[1;36m $(val=(```git branch 2>/dev/null | grep "*" | colrm 1 2```); if [ ! -z "$val" ]; then echo "($val) "; fi)\e[1;32m$ \e[0m' 
 
 # For Traversing up the directory structure in zsh
 cd..() {
-    if [ -z "$1" ]; then
-            echo "cd ERROR: Enter the number of directories to wish to go up"
-    else
-            dir_val=$(repeat $1 printf ../)
-            cd $dir_val
-    fi
+    dir_val=$(repeat ${1:-1} printf ../)
+    cd $dir_val
 }
