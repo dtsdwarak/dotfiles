@@ -2,6 +2,7 @@ source $HOME/dwarak_dotfiles/sh.rc
 
 setopt PROMPT_SUBST # To execute function inside PS1. Refer this- http://superuser.com/a/142114
 
+# To execute everytime before the prompt is set. More on that here: http://zsh.sourceforge.net/Doc/Release/Functions.html
 function precmd() { 
     PS1_curDir
 }
