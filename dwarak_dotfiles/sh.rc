@@ -20,7 +20,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # colorized ls
-alias ls='ls -GpFh'
+alias ls='ls -GpFh --color=auto'
 
 # untar
 alias untar='tar xvf'
