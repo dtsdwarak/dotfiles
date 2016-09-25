@@ -13,3 +13,4 @@
     co = checkout
     user = "!f() { git config user.name; git config user.email; }; f"
     latest = "!f() { git slog | head -${1:-5}; }; f"
+    nuke = "!f() { git reset --hard ${1:-HEAD}; }; f"
