@@ -8,7 +8,7 @@ function precmd() {
 }
 
 # For help refer here: http://www.nparikh.org/unix/prompt.php
-export PS1=$'\e[1;32m$curDir\e[1;36m $(val=(```git branch 2>/dev/null | grep "*" | colrm 1 2```); if [ ! -z "$val" ]; then echo "($val) "; fi)\e[1;32m$ \e[0m' 
+export PS1=$'\e[1;32m$curDir\e[1;36m $(val=( $(git branch 2>/dev/null | grep "*" | colrm 1 2) ); if [ ! -z "$val" ]; then echo "($val) "; fi)\e[1;32m$ \e[0m' 
 
 # For Traversing up the directory structure in zsh
 cd..() {
