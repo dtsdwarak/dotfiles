@@ -82,7 +82,7 @@ curl -s --header 'Access-Token: '$PUSH_BULLET_ACCESS_TOKEN \
 
 # To execute everytime before a prompt
 function PS1_curDir() {
-    curDir=$(pwd | sed -e 's#'"${HOME}"'#~#g') # Thanks to http://stackoverflow.com/a/25944070
+    curDir=$(pwd | sed -e 's#'"${HOME}"'#~#g')
     pwdPathSize=50
     if [ "$(echo "$curDir" | wc -c)" -gt $pwdPathSize ];
     then
