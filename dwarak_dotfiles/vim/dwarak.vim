@@ -46,12 +46,12 @@ set hlsearch
 " Enable color syntax
 syntax enable
 
-" Setting background color
-set background=light
-highlight Normal ctermfg=grey ctermbg=black
-
 " setting default color theme to 'monokai'. Change it to whatever works for you.
 colorscheme tender
+
+" Setting background color
+set background=dark
+highlight Normal ctermfg=grey ctermbg=black
 
 " Make vim use 256 colors. http://vim.wikia.com/wiki/Using_GUI_color_settings_in_a_terminal
 set t_Co=256
