@@ -23,7 +23,12 @@ then
 fi
 
 # Copy .profile settings
-echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
+
+if [[ -z $(grep "dwarak_dotfiles" $HOME/.profile) ]];
+then
+    echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
+fi
+
 if [[ -z $(grep "~/.profile" $HOME/.bash_profile) ]];
 then
     echo 'source ~/.profile' >> $HOME/.bash_profile
