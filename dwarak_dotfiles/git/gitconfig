@@ -9,8 +9,14 @@
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 	slog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     url = config --get remote.origin.url
-    comdiff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
+    filediff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
     co = checkout
     user = "!f() { git config user.name; git config user.email; }; f"
     latest = "!f() { git slog | head -${1:-5}; }; f"
     nuke = "!f() { git reset --hard ${1:-HEAD}; }; f"
+    cp = cherry-pick
+    web = instaweb
+[instaweb]
+    httpd = lighttpd
+    port = 9999
+    local = false

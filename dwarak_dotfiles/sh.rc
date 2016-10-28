@@ -6,6 +6,7 @@ alias projects="cd ~/projects"
 alias sublime="/opt/sublime_text/sublime_text" #For sublime-text
 alias pys="python -m SimpleHTTPServer" # To run a temp server in your current folder
 alias lcat="pygmentize -g" # install python-pygments from your package manager; Colorize your cat output
+alias vi=vim
 
 # public ip
 alias publicip="curl https://api.ipify.org"

@@ -1,5 +1,5 @@
 # Install dependencies
-apt-get -y install python-pip i3lock vim htop
+apt-get -y install python-pip i3lock vim htop lighttpd
 pip install Pygments
 
 #Copy files
@@ -22,12 +22,6 @@ then
     echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
 fi
 
-# Pull vim configs over
-if [[ -z $(grep "vim.rc" $HOME/.vimrc) ]];
-then
-    echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
-fi
-
 # Copy .profile settings
 echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
 if [[ -z $(grep "~/.profile" $HOME/.bash_profile) ]];
@@ -39,9 +33,31 @@ if [[ -z $(grep "~/.profile" $HOME/.zlogin) ]];
 then
     echo 'source ~/.profile' >> $HOME/.zlogin
 fi
-#===============
+
+##################
+# Setup Git
+##################
 
 # Install gitconfig
 cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
+
+##################
+# Setup VIM
+##################
+
+# Pull vim configs over
+touch $HOME/.vimrc
+if [[ -z $(grep "dwarak.vim" $HOME/.vimrc) ]];
+then
+    echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
+fi
+
+# Create colors folder
+mkdir -p $HOME/.vim/colors
+
+# Copy themes
+cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
+
+##################
 
 echo "Install successful. Open a new terminal to see changes. :-) "
