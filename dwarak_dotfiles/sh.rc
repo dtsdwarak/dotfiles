@@ -20,9 +20,6 @@ alias cp='cp -i'
 # move file interactive
 alias mv='mv -i'
 
-# colorized ls
-alias ls='ls -GpFh --color=auto'
-
 # untar
 alias untar='tar xvf'
 
@@ -96,3 +93,12 @@ function PS1_curDir() {
 #=====================================
 
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
+
+case $(uname) in
+  Linux) 
+    source $HOME/dwarak_dotfiles/linux.rc
+    ;; 
+  Darwin) 
+    source $HOME/dwarak_dotfiles/mac.rc
+    ;;
+esac

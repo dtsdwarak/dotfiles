@@ -1,5 +1,5 @@
 # Install dependencies
-apt-get -y install python-pip i3lock vim htop lighttpd
+apt-get -y install python-pip i3lock vim htop lighttpd xsel
 pip install Pygments
 
 #Copy files
