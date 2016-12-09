@@ -1,0 +1,5 @@
+# To delete .DS_Store files
+alias clean="find . -name '.DS_Store' -type f -delete"
+
+# colorized ls
+alias ls='ls -GpFh'

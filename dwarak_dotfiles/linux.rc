@@ -1,0 +1,7 @@
+# copy, paste
+alias pbpaste="xsel -ob"
+alias pbcopy="xsel -ib"
+
+# colorized ls
+alias ls='ls --color=auto -GpFh --group-directories-first'
+
