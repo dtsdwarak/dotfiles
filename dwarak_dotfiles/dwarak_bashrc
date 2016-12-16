@@ -3,12 +3,16 @@ source $HOME/dwarak_dotfiles/sh.rc
 # To execute every time a prompt is set.
 PROMPT_COMMAND='PS1_curDir'
 
+# username and hostname values
+# Refer here for tput color table - http://unix.stackexchange.com/questions/269077/tput-setaf-color-table-how-to-determine-color-codes
+LOGIN_INFO="$(tput setaf 226)[$(whoami)$(tput setaf 117) @ $(tput setaf 226)$(hostname)]$(tput setaf 0)"
+
 # Correct spelling errors
 shopt -q -s cdspell
 
 # Terminal prompt
 # Guide to setting up your own PS1 variable : http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html
-export PS1='\[\e[1;32m\]$curDir \[\e[1;36m\]$(val=( $(git branch 2>/dev/null | grep "*" | colrm 1 2) ); if [ ! -z "$val" ]; then echo "($val) "; fi)\[\e[1;32m\]$ \[\e[m\]' 
+export PS1='$LOGIN_INFO\[\e[1;32m\][$curDir] \[\e[1;36m\]$(val=( $(git branch 2>/dev/null | grep "*" | colrm 1 2) ); if [ ! -z "$val" ]; then echo "($val) "; fi)\[\e[1;32m\]\n$ \[\e[m\]' 
 
 # For Traversing up the directory structure in bash. Thanks to http://stackoverflow.com/a/17030976
 cd..() {

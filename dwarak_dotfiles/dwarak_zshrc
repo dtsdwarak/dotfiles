@@ -2,13 +2,17 @@ source $HOME/dwarak_dotfiles/sh.rc
 
 setopt PROMPT_SUBST # To execute function inside PS1. Refer this- http://superuser.com/a/142114
 
+# username and hostname values
+# Refer here for tput color table - http://unix.stackexchange.com/questions/269077/tput-setaf-color-table-how-to-determine-color-codes
+LOGIN_INFO="$(tput setaf 226)[$(whoami)$(tput setaf 117) @ $(tput setaf 226)$(hostname)]$(tput setaf 0)"
+
 # To execute everytime before the prompt is set. More on that here: http://zsh.sourceforge.net/Doc/Release/Functions.html
 function precmd() { 
     PS1_curDir
 }
 
 # For help refer here: http://www.nparikh.org/unix/prompt.php
-export PS1=$'\e[1;32m$curDir\e[1;36m $(val=( $(git branch 2>/dev/null | grep "*" | colrm 1 2) ); if [ ! -z "$val" ]; then echo "($val) "; fi)\e[1;32m$ \e[0m' 
+export PS1=$'$LOGIN_INFO\e[1;32m[$curDir]\e[1;36m $(val=( $(git branch 2>/dev/null | grep "*" | colrm 1 2) ); if [ ! -z "$val" ]; then echo "($val) "; fi)\e[1;32m$ \e[0m' 
 
 # For Traversing up the directory structure in zsh
 cd..() {
