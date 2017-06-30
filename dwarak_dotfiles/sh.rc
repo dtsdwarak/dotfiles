@@ -3,10 +3,12 @@
 #=====================================
 
 alias projects="cd ~/projects"
-alias sublime="/opt/sublime_text/sublime_text" #For sublime-text
-alias pys="python -m SimpleHTTPServer" # To run a temp server in your current folder
+alias pys="python -m SimpleHTTPServer 9000" # To run a temp server in your current folder at port 9000
 alias lcat="pygmentize -g" # install python-pygments from your package manager; Colorize your cat output
 alias vi=vim
+
+# Alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # public ip
 alias publicip="curl https://api.ipify.org"
@@ -37,6 +39,14 @@ alias ping='ping -c 5'
 
 # List all listening ports-programs
 alias ports='netstat -tulanp'
+
+# Gzip as pigz
+# Learn more about pigz here - http://zlib.net/pigz/
+alias gzip=pigz
+alias gunzip=unpigz
+
+# Logout
+alias logout='mate-session-save --logout'
 
 #=====================================
 # FUNCTIONS
@@ -93,12 +103,14 @@ function PS1_curDir() {
 #=====================================
 
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
+source $HOME/dwarak_dotfiles/utilities/*
 
 case $(uname) in
-  Linux) 
+  Linux)
     source $HOME/dwarak_dotfiles/linux.rc
-    ;; 
-  Darwin) 
+    ;;
+  Darwin)
     source $HOME/dwarak_dotfiles/mac.rc
     ;;
 esac
+

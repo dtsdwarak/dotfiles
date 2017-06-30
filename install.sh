@@ -1,6 +1,7 @@
 # Install dependencies
-apt-get -y install python-pip i3lock vim htop lighttpd xsel
-pip install Pygments
+sudo apt-get update
+sudo apt-get -y install python-pip i3lock vim htop lighttpd xsel pigz
+sudo pip install Pygments
 
 #Copy files
 cp -r dwarak_dotfiles $HOME
@@ -23,7 +24,7 @@ then
 fi
 
 # Copy .profile settings
-
+# Usually used for doing stuff at boot time
 if [[ -z $(grep "dwarak_dotfiles" $HOME/.profile) ]];
 then
     echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile

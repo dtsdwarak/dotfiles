@@ -16,7 +16,10 @@
     nuke = "!f() { git reset --hard ${1:-HEAD}; }; f"
     cp = cherry-pick
     web = instaweb
+    delall = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
 [instaweb]
     httpd = lighttpd
     port = 9999
     local = false
+[help]
+    autocorrect = 1

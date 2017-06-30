@@ -1,6 +1,1 @@
-SSH_PORT=$(echo $SSH_CONNECTION | awk -F' ' '{print $2}')
-SSH_IP=$(echo $SSH_CONNECTION | awk -F' ' '{print $1}')
-SSH_TIME=$(TZ='Asia/Kolkata' date)
-LOGIN_MESSAGE="New SSH login from ${SSH_IP} via port ${SSH_PORT} at ${SSH_TIME}"
-pushb "RHEL SSH Login Alert" $LOGIN_MESSAGE
-
+# Put whatever you want to do at login time
