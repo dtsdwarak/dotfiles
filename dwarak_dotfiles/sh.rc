@@ -22,9 +22,6 @@ alias cp='cp -i'
 # move file interactive
 alias mv='mv -i'
 
-# untar
-alias untar='tar xvf'
-
 # hosts
 alias hosts='sudo vim /etc/hosts'
 
@@ -47,6 +44,9 @@ alias gunzip=unpigz
 
 # Logout
 alias logout='mate-session-save --logout'
+
+# Display path
+alias path='echo $PATH | tr ":" "\n" | nl'
 
 #=====================================
 # FUNCTIONS

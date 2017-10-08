@@ -23,5 +23,3 @@ cd..() {
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
-# Git completion
-source $HOME/dwarak_dotfiles/git/git-completion.bash

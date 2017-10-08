@@ -1,6 +1,6 @@
 # Install dependencies
 sudo apt-get update
-sudo apt-get -y install python-pip i3lock vim htop lighttpd xsel pigz
+sudo apt-get -y install pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz
 sudo pip install Pygments
 
 #Copy files

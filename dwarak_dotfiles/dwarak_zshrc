@@ -20,5 +20,3 @@ cd..() {
     cd $dir_val
 }
 
-# Git completion
-source $HOME/dwarak_dotfiles/git/git-completion.zsh
