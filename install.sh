@@ -1,7 +1,18 @@
+# Color constants
+GREEN='\033[1;32m'
+RED='\033[1;31m'
+RESET_COLOR='\033[0m'
+
+printf "\n${GREEN} Installing generic dependencies for Ubuntu...${RESET_COLOR}"
+
 # Install dependencies
 sudo apt-get update
-sudo apt-get -y install pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz
-sudo pip install Pygments
+sudo apt-get -y install build-essential postgresql-client pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz ncdu
+sudo pip install Pygments tldr csvkit pgcli
+
+## Install rust and dependencies
+curl https://sh.rustup.rs -sSf | sh
+cargo install bat
 
 #Copy files
 cp -r dwarak_dotfiles $HOME
@@ -47,6 +58,10 @@ fi
 # Install gitconfig
 cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
 
+# Completion for git in zsh shell
+mkdir -p $HOME/.zsh/functions && cp $HOME/dwarak_dotfiles/git/git-completion.zsh $HOME/.zsh/functions/_git
+
+
 ##################
 # Setup VIM
 ##################
@@ -66,4 +81,23 @@ cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
 
 ##################
 
-echo "Install successful. Open a new terminal to see changes. :-) "
+
+###########################
+# Setup command line tools
+###########################
+
+
+# Setup base directory
+mkdir -p $HOME/apps/
+
+# Install fzf
+# Git - https://github.com/junegunn/fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/apps/fzf
+$HOME/fzf/install
+
+##############################
+
+
+source $HOME/.bashrc
+source $HOME/.zshrc
+printf "\n\n${GREEN} Dotfile installation successful! ${RESET_COLOR} \n"

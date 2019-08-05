@@ -20,7 +20,8 @@ function extract {
             *.bz2)       bunzip2 ./"$n"     ;;
             *.rar)       unrar x -ad ./"$n" ;;
             *.gz)        gunzip ./"$n"      ;;
-            *.zip)       unzip ./"$n"       ;;
+            *.zip|*.egg)       
+                         unzip ./"$n"       ;;
             *.z)         uncompress ./"$n"  ;;
             *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
                          7z x ./"$n"        ;;

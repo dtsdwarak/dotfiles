@@ -20,3 +20,8 @@ cd..() {
     cd $dir_val
 }
 
+# Git completion
+zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+# `compinit` scans $fpath, so do this before calling it.
+fpath=(~/.zsh/functions $fpath)
+autoload -Uz compinit && compinit

@@ -20,6 +20,10 @@ cd..() {
 }
 
 # Managing shell history
+# Infinite bash history - https://stackoverflow.com/a/12234989
 export HISTCONTROL=ignoredups
-export HISTSIZE=1000
+export HISTFILESIZE=
+export HISTSIZE=
 
+# Git completion
+source $HOME/dwarak_dotfiles/git/git-completion.bash

@@ -1,9 +1,17 @@
 #=====================================
+# COLOR VARIABLES FOR PRINT STATEMENTS
+#=====================================
+
+GREEN='\033[1;32m'
+RED='\033[1;31m'
+BLUE='\033[1;36m'
+RESET_COLOR='\033[0m'
+
+#=====================================
 # ALIASES
 #=====================================
 
 alias projects="cd ~/projects"
-alias pys="python -m SimpleHTTPServer 9000" # To run a temp server in your current folder at port 9000
 alias lcat="pygmentize -g" # install python-pygments from your package manager; Colorize your cat output
 alias vi=vim
 
@@ -15,6 +23,9 @@ alias publicip="curl https://api.ipify.org"
 
 # Speedtest
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+
+# rsync with progress
+alias rsync='rsync --info=progress2'
 
 # copy file interactive
 alias cp='cp -i'
@@ -48,16 +59,52 @@ alias logout='mate-session-save --logout'
 # Display path
 alias path='echo $PATH | tr ":" "\n" | nl'
 
+# Disk space
+alias du='du -sh * | sort -h'
+
+# Battery
+alias battery='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"'
+
+# fzf aliases
+alias preview="fzf --preview 'bat {}'"
+alias open='vi $(preview)'
+
 #=====================================
 # FUNCTIONS
 #=====================================
 
+# Help
+function help() {
+     printf "\n${BLUE} ================ MAN PAGES ================ ${RESET_COLOR}\n"
+     tldr $1
+     printf "\n${BLUE} ================ EXAMPLES ================ ${RESET_COLOR}\n\n\n\n\n"
+     curl cht.sh/$1
+ }
+
+
+# Pretty Print CSV
+# Reference - https://www.stefaanlippens.net/pretty-csv.html
+function pretty_csv {
+    column -t -s, -n "$@" | less -F -S -X -K
+}
+
+
+## To start temp server
+pys() {
+    if [[ $(python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))' | cut -d'.' -f1) == 2 ]]; then
+        printf "\n${GREEN}Content ready to be served at http://$(hostname):${1:-9000}${RESET_COLOR}\n"
+        python -m SimpleHTTPServer ${1:-9000}
+    elif [[ $(python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))' | cut -d'.' -f1) = 3 ]]; then
+        printf "\n${GREEN}Content ready to be served at http://$(hostname):${1:-9000}${RESET_COLOR}\n"
+        python -m http.server ${1:-9000}
+    else
+        printf "\n${RED}Python version not known. Cannot start a server.${RESET_COLOR}\n"
+    fi
+}
+
 # Local ip address
 localip() {
-    interfaces=($(ifconfig | grep 'Link encap' | awk -F' ' '{print $1}'))
-    for i in ${interfaces[@]}; do
-    	echo "$i - $(ifconfig $i | grep "inet addr" | awk -F':' '{print $2}' | awk -F' ' '{print $1}')"
-    done
+    ip addr show | grep -w "inet" | tr -s ' ' | awk -F' ' '{print $NF " - " $2}'
 }
 
 # To view json files in pretty format and syntax highlight
@@ -91,19 +138,26 @@ curl -s --header 'Access-Token: '$PUSH_BULLET_ACCESS_TOKEN \
 # To execute everytime before a prompt
 function PS1_curDir() {
     curDir=$(pwd | sed -e 's#'"${HOME}"'#~#g')
-    pwdPathSize=50
+    pwdPathSize=20
     if [ "$(echo "$curDir" | wc -c)" -gt $pwdPathSize ];
     then
         curDir="$( echo $curDir | awk -F'/' '{print $1"/"$2"/.../"$(NF-1)"/"$NF }' )"
     fi
 }
 
+#====================================
+# DOCKER
+#====================================
+
+export DOCKER_HOST=unix:///var/run/docker.sock
+
 #=====================================
 # SOURCING OTHER CONFIG FILES
 #=====================================
 
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
-source $HOME/dwarak_dotfiles/utilities/*
+source $HOME/dwarak_dotfiles/utilities/extract.sh
+export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
 
 case $(uname) in
   Linux)
@@ -113,4 +167,3 @@ case $(uname) in
     source $HOME/dwarak_dotfiles/mac.rc
     ;;
 esac
-

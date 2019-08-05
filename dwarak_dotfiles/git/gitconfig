@@ -2,24 +2,42 @@
     email = dtsdwarak@hotmail.com
 	name = Dwaraka Nath
 [color]
-    ui = auto
+	ui = true
 [push]
 	default = simple
 [alias]
-	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+	addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+    dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 	slog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     url = config --get remote.origin.url
     filediff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
     co = checkout
     user = "!f() { git config user.name; git config user.email; }; f"
-    latest = "!f() { git slog | head -${1:-5}; }; f"
+    latest = "!f() { git slog --color | head -${1:-5}; }; f"
     nuke = "!f() { git reset --hard ${1:-HEAD}; }; f"
     cp = cherry-pick
     web = instaweb
     delall = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
+	uncommit = reset --soft HEAD^
+  	unstage = reset
+  	staged = diff --cached
 [instaweb]
     httpd = lighttpd
     port = 9999
     local = false
 [help]
     autocorrect = 1
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
