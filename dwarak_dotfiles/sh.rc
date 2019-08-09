@@ -157,6 +157,7 @@ export DOCKER_HOST=unix:///var/run/docker.sock
 
 source $HOME/dwarak_dotfiles/explorer/explorer.rc
 source $HOME/dwarak_dotfiles/utilities/extract.sh
+source $HOME/dwarak_dotfiles/utilities/kp.sh
 export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
 
 case $(uname) in
