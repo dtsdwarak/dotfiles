@@ -10,10 +10,6 @@ sudo apt-get update
 sudo apt-get -y install build-essential postgresql-client pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz ncdu
 sudo pip install Pygments tldr csvkit pgcli
 
-## Install rust and dependencies
-curl https://sh.rustup.rs -sSf | sh
-cargo install bat
-
 #Copy files
 cp -r dwarak_dotfiles $HOME
 
@@ -86,14 +82,13 @@ cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
 # Setup command line tools
 ###########################
 
-
 # Setup base directory
 mkdir -p $HOME/apps/
 
 # Install fzf
 # Git - https://github.com/junegunn/fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/apps/fzf
-$HOME/fzf/install
+$HOME/apps/fzf/install
 
 ##############################
 
