@@ -23,6 +23,7 @@ $ chmod +x install.sh && ./install.sh # Run as sudo
 
 1. `bat` CLI
 2. Perf related stuff - `nmon`, `glances`, `screenfetch`, ~~`htop`~~ etc
+3. [Syncthing](https://syncthing.net/)
 
 ## License
 [GNU GPL v3](http://choosealicense.com/licenses/gpl-3.0/)
