@@ -11,7 +11,6 @@ RESET_COLOR='\033[0m'
 # ALIASES
 #=====================================
 
-alias projects="cd ~/projects"
 alias lcat="pygmentize -g" # install python-pygments from your package manager; Colorize your cat output
 alias vi=vim
 
@@ -68,6 +67,9 @@ alias battery='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|
 # fzf aliases
 alias preview="fzf --preview 'bat {}'"
 alias open='vi $(preview)'
+alias projects='cd ~/projects/$(ls ~/projects/ | fzf)'
+alias proj=projects
+
 
 #=====================================
 # FUNCTIONS
