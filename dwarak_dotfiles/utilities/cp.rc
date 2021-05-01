@@ -1,0 +1,4 @@
+# Add a log of CP solutions to leetcode folder within algorithms git repo
+addleet() {
+  cat > $HOME/projects/algorithms/interview_prep/leetcode/$(echo $1 | sed 's/[^a-zA-Z0-9]/_/g' | sed 's/__/_/g' | echo "$(cat -).cpp")
+}
