@@ -1,5 +1,51 @@
 # To delete .DS_Store files
 alias clean="find . -name '.DS_Store' -type f -delete"
 
-# colorized ls
-alias ls='ls -GpFh'
+# To find battery power
+alias battery="pmset -g batt"
+
+alias ports='netstat -anvp tcp | awk "NR<3 || /LISTEN/"'
+
+# Aliases to macports
+alias ls='gls --color=auto -GpFh --group-directories-first'
+alias grep=ggrep
+alias mv='gmv -i'
+alias ln=gln
+alias sed=gsed
+alias tar=gtar
+alias tr=gtr
+alias find=gfind
+alias cp='gcp -i'
+alias date=gdate
+alias du='gdu -sh * | sort -h'
+alias awk=gawk
+alias fgrep=gfgrep
+alias egrep=gegrep
+alias cat=gcat
+alias telnet=gtelnet
+alias ping='gping -c 5'
+alias traceroute=gtraceroute
+alias whois=gwhois
+alias xargs=gxargs
+alias rm=grm
+alias mkdir=gmkdir
+alias rmdir=grmdir
+alias uniq=guniq
+alias sort=gsort
+alias nl=gnl
+alias wc=gwc
+alias head=ghead
+alias tail=gtail
+alias comm=gcomm
+alias paste=gpaste
+alias cut=gnucut
+alias locate=glocate
+alias diff=gdiff
+alias which=gwhich
+alias touch=gtouch
+alias tee=gtee
+alias who=gwho
+alias cmp=gcmp
+alias dir=gdir
+alias uptime=guptime
+alias nc=gnc

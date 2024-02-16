@@ -13,14 +13,21 @@
     filediff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
     co = checkout
     user = "!f() { git config user.name; git config user.email; }; f"
-    latest = "!f() { git slog --color | head -${1:-5}; }; f"
+    latest = "!f() { git slog --color | head -${1:-5}; echo "\n"}; f"
     nuke = "!f() { git reset --hard ${1:-HEAD}; }; f"
     cp = cherry-pick
     web = instaweb
-    delall = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
+    repostat = for-each-ref --sort='authordate:iso8601' --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+    delall = "!f() { git branch | sed 's/[ *]//g' | grep -wv \"^$1$\" | xargs git branch -D; }; f"
 	uncommit = reset --soft HEAD^
-  	unstage = reset
+    unstage = restore --staged
+    unstageall = reset
   	staged = diff --cached
+    branches=!sh -c '$HOME/dwarak_dotfiles/git/git-branch.sh'
+    ri = "!f() { git rebase -i HEAD~$1; }; f"
+    wip = !git add --all && git commit -m 'WIP'
+    db = "!f() { git remote show origin | sed -n '/HEAD branch/s/.*: //p'; }; f"
+    prom = !sh -c 'git pull -r origin $(git db)'
 [instaweb]
     httpd = lighttpd
     port = 9999
@@ -29,7 +36,12 @@
     autocorrect = 1
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
-	editor = vim
+    editor = vi
+    untrackedCache = true
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52

@@ -7,3 +7,15 @@ alias ls='ls --color=auto -GpFh --group-directories-first'
 
 # Restart compiz
 alias rcompiz='DISPLAY=:0 compiz --replace'
+
+# Logout
+alias logout='mate-session-save --logout'
+
+# List all listening ports-programs
+alias ports='netstat -tulanp'
+
+# Alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Battery
+alias battery='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"'

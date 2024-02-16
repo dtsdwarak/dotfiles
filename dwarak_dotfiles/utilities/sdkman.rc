@@ -1,0 +1,5 @@
+export JAVA8_HOME=${SDKMAN_CANDIDATES_DIR}/java/8.0.352-amzn
+export JAVA11_HOME=${SDKMAN_CANDIDATES_DIR}/java/11.0.17-amzn
+alias jdk_11='export JAVA_HOME="$JAVA11_HOME" && export PATH="$JAVA_HOME/bin:$PATH"'
+alias jdk_8='export JAVA_HOME="$JAVA8_HOME" && export PATH="$JAVA_HOME/bin:$PATH"'
+jdk_11

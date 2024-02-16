@@ -7,8 +7,29 @@ printf "\n${GREEN} Installing generic dependencies for Ubuntu...${RESET_COLOR}"
 
 # Install dependencies
 sudo apt-get update
-sudo apt-get -y install build-essential postgresql-client pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz ncdu
+sudo apt-get -y install build-essential postgresql-client pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz ncdu tmux rbenv ruby-build direnv thefuck software-properties-common stow fzf bash zsh coreutils img2pdf more
+python3 -m ensurepip
 sudo pip install Pygments tldr csvkit pgcli
+
+# Install ruby versions
+# For errors with build, check - 
+# https://github.com/rbenv/ruby-build/discussions/2009
+rbenv install 2.7.6
+rbenv global 2.7.6
+
+# Install Rust Toolchain
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install bat exa fd-find procs du-dust ripgrep eva lsd
+
+# Install NVM
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+
+# Install SDKMan
+
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #Copy files
 cp -r dwarak_dotfiles $HOME
@@ -77,6 +98,10 @@ cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
 
 ##################
 
+# Setup Kitty
+mkdir -p $HOME/.config/kitty/
+cp kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+
 
 ###########################
 # Setup command line tools
@@ -84,11 +109,6 @@ cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
 
 # Setup base directory
 mkdir -p $HOME/apps/
-
-# Install fzf
-# Git - https://github.com/junegunn/fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/apps/fzf
-$HOME/apps/fzf/install
 
 ##############################
 

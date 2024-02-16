@@ -7,15 +7,51 @@ RED='\033[1;31m'
 BLUE='\033[1;36m'
 RESET_COLOR='\033[0m'
 
+#====================================
+# ENV VARIABLES
+#====================================
+
+export DOCKER_HOST=unix:///var/run/docker.sock
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export LESS='-R --use-color -Dd+r$Du+b'
+
+#=====================================
+# SOURCING OTHER CONFIG FILES
+#=====================================
+
+source $HOME/dwarak_dotfiles/explorer/explorer.rc
+source $HOME/dwarak_dotfiles/utilities/extract.sh
+source $HOME/dwarak_dotfiles/utilities/kp.sh
+source $HOME/dwarak_dotfiles/utilities/sdkman.rc
+source $HOME/.cargo/env
+export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
+
+case $(uname) in
+  Linux)
+    source $HOME/dwarak_dotfiles/linux.rc
+    ;;
+  Darwin)
+    source $HOME/dwarak_dotfiles/mac.rc
+    ;;
+esac
+
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
+eval "$(thefuck --alias)"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 #=====================================
 # ALIASES
 #=====================================
 
+alias projects="cd ~/projects"
 alias lcat="pygmentize -g" # install python-pygments from your package manager; Colorize your cat output
 alias vi=vim
 
-# Alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# pydf for df
+alias df=pydf
 
 # public ip
 alias publicip="curl https://api.ipify.org"
@@ -27,49 +63,49 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 alias rsync='rsync --info=progress2'
 
 # copy file interactive
-alias cp='cp -i'
+# alias cp='cp -i'
 
 # move file interactive
-alias mv='mv -i'
+# alias mv='mv -i'
 
 # hosts
 alias hosts='sudo vim /etc/hosts'
-
-# Lock screen
-alias afk="i3lock -c 000000"
 
 # Top
 alias top="htop"
 
 # Limit ping to 5 requests
-alias ping='ping -c 5'
-
-# List all listening ports-programs
-alias ports='netstat -tulanp'
+# alias ping='ping -c 5'
 
 # Gzip as pigz
 # Learn more about pigz here - http://zlib.net/pigz/
 alias gzip=pigz
 alias gunzip=unpigz
 
-# Logout
-alias logout='mate-session-save --logout'
-
 # Display path
 alias path='echo $PATH | tr ":" "\n" | nl'
 
 # Disk space
-alias du='du -sh * | sort -h'
-
-# Battery
-alias battery='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"'
+# alias du='du -sh * | sort -h'
 
 # fzf aliases
 alias preview="fzf --preview 'bat {}'"
-alias open='vi $(preview)'
-alias projects='cd ~/projects/$(ls ~/projects/ | fzf)'
-alias proj=projects
+alias see='vi $(preview)'
+alias proj='cd $HOME/projects/$(\ls -d $HOME/projects/* | rev | cut -d"/" -f 1 | rev | fzf)'
+alias projects=proj
+export BAT_CONFIG_PATH="$HOME/dwarak_dotfiles/batconfig"
 
+# youtube-dl aliases
+
+alias youtube-dl-best='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" '
+alias youtube-dl-mp3='youtube-dl -x --audio-format mp3 '
+alias youtube-dl-playlist='youtube-dl -f best -ciw  -o "%(playlist_index)s - %(title)s.%(ext)s" --all-subs --skip-download -v '
+
+# kitty ssh
+# https://sw.kovidgoyal.net/kitty/kittens/ssh/
+if [ "$TERM" = 'xterm-kitty' ]; then
+  alias ssh="kitty +kitten ssh"
+fi
 
 #=====================================
 # FUNCTIONS
@@ -147,27 +183,4 @@ function PS1_curDir() {
     fi
 }
 
-#====================================
-# DOCKER
-#====================================
 
-export DOCKER_HOST=unix:///var/run/docker.sock
-
-#=====================================
-# SOURCING OTHER CONFIG FILES
-#=====================================
-
-source $HOME/dwarak_dotfiles/explorer/explorer.rc
-source $HOME/dwarak_dotfiles/utilities/extract.sh
-source $HOME/dwarak_dotfiles/utilities/kp.sh
-source $HOME/dwarak_dotfiles/utilities/cp.rc
-export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
-
-case $(uname) in
-  Linux)
-    source $HOME/dwarak_dotfiles/linux.rc
-    ;;
-  Darwin)
-    source $HOME/dwarak_dotfiles/mac.rc
-    ;;
-esac
