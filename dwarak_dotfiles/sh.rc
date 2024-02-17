@@ -35,13 +35,6 @@ case $(uname) in
     ;;
 esac
 
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
-eval "$(thefuck --alias)"
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 #=====================================
 # ALIASES
 #=====================================
@@ -62,20 +55,11 @@ alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 # rsync with progress
 alias rsync='rsync --info=progress2'
 
-# copy file interactive
-# alias cp='cp -i'
-
-# move file interactive
-# alias mv='mv -i'
-
 # hosts
 alias hosts='sudo vim /etc/hosts'
 
 # Top
 alias top="htop"
-
-# Limit ping to 5 requests
-# alias ping='ping -c 5'
 
 # Gzip as pigz
 # Learn more about pigz here - http://zlib.net/pigz/
@@ -84,9 +68,6 @@ alias gunzip=unpigz
 
 # Display path
 alias path='echo $PATH | tr ":" "\n" | nl'
-
-# Disk space
-# alias du='du -sh * | sort -h'
 
 # fzf aliases
 alias preview="fzf --preview 'bat {}'"
@@ -183,4 +164,32 @@ function PS1_curDir() {
     fi
 }
 
+# Load pyenv automatically by appending
+# the following to 
+# ~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
+# and ~/.bashrc (for interactive shells) :
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Restart your shell for the changes to take effect.
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.bashrc:
+
+eval "$(pyenv virtualenv-init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+eval "$($HOME/.rbenv/bin/rbenv init - bash)"
+eval "$(thefuck --alias)"

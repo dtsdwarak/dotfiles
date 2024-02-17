@@ -1,21 +1,35 @@
+#! /bin/bash
+
+set -e
+
 # Color constants
 GREEN='\033[1;32m'
 RED='\033[1;31m'
 RESET_COLOR='\033[0m'
 
-printf "\n${GREEN} Installing generic dependencies for Ubuntu...${RESET_COLOR}"
+printf "\n${GREEN}Installing generic dependencies for Ubuntu...${RESET_COLOR}\n\n"
 
 # Install dependencies
-sudo apt-get update
-sudo apt-get -y install build-essential postgresql-client pv jq fonts-inconsolata python-pip i3lock vim htop lighttpd xsel pigz ncdu tmux rbenv ruby-build direnv thefuck software-properties-common stow fzf bash zsh coreutils img2pdf more
-python3 -m ensurepip
+sudo apt update && sudo apt upgrade
+sudo apt -y install build-essential libssl-dev postgresql-client pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux rbenv ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf
+# python3 -m ensurepip
 sudo pip install Pygments tldr csvkit pgcli
+
+# fzf install
+# Install via git to include shell-bindings since it is currently not supported if installed via package manager in Ubuntu
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Pyenv install
+curl https://pyenv.run | bash
 
 # Install ruby versions
 # For errors with build, check - 
 # https://github.com/rbenv/ruby-build/discussions/2009
-rbenv install 2.7.6
-rbenv global 2.7.6
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+$HOME/.rbenv/bin/rbenv init - bash
+rbenv install 3.3.0
+rbenv global 3.3.0
 
 # Install Rust Toolchain
 
@@ -46,6 +60,7 @@ then
     echo 'source $HOME/dwarak_dotfiles/dwarak_bashrc' >> $HOME/.bashrc
 fi
 
+touch $HOME/.bash_profile
 if [[ -z $(grep "bashrc" $HOME/.bash_profile) ]];
 then
     echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
@@ -53,6 +68,7 @@ fi
 
 # Copy .profile settings
 # Usually used for doing stuff at boot time
+touch $HOME/.profile
 if [[ -z $(grep "dwarak_dotfiles" $HOME/.profile) ]];
 then
     echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
@@ -63,6 +79,7 @@ then
     echo 'source ~/.profile' >> $HOME/.bash_profile
 fi
 
+touch $HOME/.zlogin
 if [[ -z $(grep "~/.profile" $HOME/.zlogin) ]];
 then
     echo 'source ~/.profile' >> $HOME/.zlogin
@@ -100,7 +117,7 @@ cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
 
 # Setup Kitty
 mkdir -p $HOME/.config/kitty/
-cp kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+cp $HOME/dwarak_dotfiles/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
 
 
 ###########################
@@ -115,4 +132,4 @@ mkdir -p $HOME/apps/
 
 source $HOME/.bashrc
 source $HOME/.zshrc
-printf "\n\n${GREEN} Dotfile installation successful! ${RESET_COLOR} \n"
+printf "\n\n${GREEN}Dotfile installation successful! ${RESET_COLOR} \n"
