@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# Quit if you encounter error
 set -e
 
 # Color constants
@@ -11,7 +12,7 @@ printf "\n${GREEN}Installing generic dependencies for Ubuntu...${RESET_COLOR}\n\
 
 # Install dependencies
 sudo apt update && sudo apt upgrade
-sudo apt -y install build-essential libssl-dev postgresql-client pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux rbenv ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf
+sudo apt -y install pydf build-essential libssl-dev postgresql-client pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux rbenv ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf
 # python3 -m ensurepip
 sudo pip install Pygments tldr csvkit pgcli
 
