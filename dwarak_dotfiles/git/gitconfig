@@ -54,3 +54,9 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[pull]
+    rebase = true
+[diff]
+	algorithm = histogram
+[init]
+	defaultBranch = main
