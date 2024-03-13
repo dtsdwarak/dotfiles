@@ -1,4 +1,4 @@
-source $HOME/dwarak_dotfiles/sh.rc
+source $HOME/.dotfilerc/sh.rc
 
 # To execute every time a prompt is set.
 PROMPT_COMMAND='PS1_curDir'
@@ -30,7 +30,7 @@ export HISTFILESIZE=
 export HISTSIZE=
 
 # Git completion
-source $HOME/dwarak_dotfiles/git/git-completion.bash
+source $HOME/.dotfilerc/git/git-completion.bash
 eval "$(direnv hook bash)"
 
 source $HOME/.asdf/completions/asdf.bash

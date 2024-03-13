@@ -23,8 +23,8 @@
     unstage = restore --staged
     unstageall = reset
   	staged = diff --cached
-    branches=!sh -c '$HOME/dwarak_dotfiles/git/git-branch.sh'
-    bb=!sh -c '$HOME/dwarak_dotfiles/git/better-git-branch.sh'
+    branches=!sh -c '$HOME/.dotfilerc/git/git-branch.sh'
+    bb=!sh -c '$HOME/.dotfilerc/git/better-git-branch.sh'
     ri = "!f() { git rebase -i HEAD~$1; }; f"
     wip = !git add --all && git commit -m 'WIP'
     db = "!f() { git remote show origin | sed -n '/HEAD branch/s/.*: //p'; }; f"

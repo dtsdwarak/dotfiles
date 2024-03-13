@@ -10,15 +10,22 @@ RESET_COLOR='\033[0m'
 
 printf "\n${GREEN}Installing generic dependencies for Ubuntu...${RESET_COLOR}\n\n"
 
+function get_backup {
+  mv ~/$1 ~/$1_$(date +%s) || echo "No $1 file already available for backup. Skipping"
+}
+
 # Install dependencies
-sudo apt update && sudo apt upgrade
-sudo apt -y install pydf build-essential libyaml-dev libssl-dev postgresql-client \
+sudo apt update && sudo apt -y upgrade
+sudo apt remove fzf
+sudo DEBIAN_FRONTEND=noninteractive apt -y install \
+tzdata \
+pydf build-essential libyaml-dev libssl-dev postgresql-client \
 pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux \
 ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf dateutils
 
 # fzf install
 # Install via git to include shell-bindings since it is currently not supported if installed via package manager in Ubuntu
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install || echo "fzf already installed" 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && $(yes | ~/.fzf/install) || echo "fzf already installed" 
 
 # ASDF Install
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0 || echo "asdf already installed"
@@ -30,88 +37,20 @@ if [ ! -d "$HOME/.sdkman" ]; then
     source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
 
-printf "\n\n${GREEN} Copying source files... ${RESET_COLOR} \n"
+printf "\n\n${GREEN} Stowing dotfiles... ${RESET_COLOR} \n"
 
-#Copy files
-cp -r dwarak_dotfiles $HOME
-
-# Install configs over Zsh
-if [[ -z $(grep "dwarak_dotfiles" $HOME/.zshrc) ]];
-then
-    echo 'source $HOME/dwarak_dotfiles/dwarak_zshrc' >> $HOME/.zshrc
-fi
-
-# Install configs over Bash
-if [[ -z $(grep "dwarak_dotfiles" $HOME/.bashrc) ]];
-then
-    echo 'source $HOME/dwarak_dotfiles/dwarak_bashrc' >> $HOME/.bashrc
-fi
-
-touch $HOME/.bash_profile
-if [[ -z $(grep "bashrc" $HOME/.bash_profile) ]];
-then
-    echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
-fi
-
-# Copy .profile settings
-# Usually used for doing stuff at boot time
-touch $HOME/.profile
-if [[ -z $(grep "dwarak_dotfiles" $HOME/.profile) ]];
-then
-    echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
-fi
-
-if [[ -z $(grep "~/.profile" $HOME/.bash_profile) ]];
-then
-    echo 'source ~/.profile' >> $HOME/.bash_profile
-fi
-
-touch $HOME/.zlogin
-if [[ -z $(grep "~/.profile" $HOME/.zlogin) ]];
-then
-    echo 'source ~/.profile' >> $HOME/.zlogin
-fi
-
-##################
-# Setup Git
-##################
-
-printf "\n\n${GREEN} Setting up Git... ${RESET_COLOR} \n"
-
-# Install gitconfig
-cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
+get_backup .bash_profile 
+get_backup .bashrc 
+get_backup .profile 
+get_backup .zlogin 
+get_backup .zshrc
+get_backup .gitconfig
+stow config -t ~/
+stow dotfile -t ~/
+stow vim -t ~/
 
 # Completion for git in zsh shell
-mkdir -p $HOME/.zsh/functions && cp $HOME/dwarak_dotfiles/git/git-completion.zsh $HOME/.zsh/functions/_git
-
-
-##################
-# Setup VIM
-##################
-
-printf "\n\n${GREEN} Setting up vim configs... ${RESET_COLOR} \n"
-
-# Pull vim configs over
-touch $HOME/.vimrc
-if [[ -z $(grep "dwarak.vim" $HOME/.vimrc) ]];
-then
-    echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
-fi
-
-# Create colors folder
-mkdir -p $HOME/.vim/colors
-
-# Copy themes
-cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
-
-##################
-
-printf "\n\n${GREEN} Setting up kitty... ${RESET_COLOR} \n"
-
-# Setup Kitty
-mkdir -p $HOME/.config/kitty/
-cp $HOME/dwarak_dotfiles/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
-
+mkdir -p $HOME/.zsh/functions && cp $HOME/.dotfilerc/git/git-completion.zsh $HOME/.zsh/functions/_git
 
 ###########################
 # Setup command line tools
