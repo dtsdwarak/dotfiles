@@ -50,30 +50,30 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 cp -r dwarak_dotfiles $HOME
 
 # Install configs over Zsh
-if [[ -z $(grep "dwarak_dotfiles" $HOME/.zshrc) ]];
-then
-    echo 'source $HOME/dwarak_dotfiles/dwarak_zshrc' >> $HOME/.zshrc
-fi
+# if [[ -z $(grep "dwarak_dotfiles" $HOME/.zshrc) ]];
+# then
+#     echo 'source $HOME/dwarak_dotfiles/dwarak_zshrc' >> $HOME/.zshrc
+# fi
 
 # Install configs over Bash
-if [[ -z $(grep "dwarak_dotfiles" $HOME/.bashrc) ]];
-then
-    echo 'source $HOME/dwarak_dotfiles/dwarak_bashrc' >> $HOME/.bashrc
-fi
+# if [[ -z $(grep "dwarak_dotfiles" $HOME/.bashrc) ]];
+# then
+#     echo 'source $HOME/dwarak_dotfiles/dwarak_bashrc' >> $HOME/.bashrc
+# fi
 
 touch $HOME/.bash_profile
-if [[ -z $(grep "bashrc" $HOME/.bash_profile) ]];
-then
-    echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
-fi
+# if [[ -z $(grep "bashrc" $HOME/.bash_profile) ]];
+# then
+#     echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
+# fi
 
 # Copy .profile settings
 # Usually used for doing stuff at boot time
-touch $HOME/.profile
-if [[ -z $(grep "dwarak_dotfiles" $HOME/.profile) ]];
-then
-    echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
-fi
+# touch $HOME/.profile
+# if [[ -z $(grep "dwarak_dotfiles" $HOME/.profile) ]];
+# then
+#     echo 'source $HOME/dwarak_dotfiles/profile.rc' >> $HOME/.profile
+# fi
 
 if [[ -z $(grep "~/.profile" $HOME/.bash_profile) ]];
 then
@@ -91,10 +91,10 @@ fi
 ##################
 
 # Install gitconfig
-cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
+# cat $HOME/dwarak_dotfiles/git/gitconfig > $HOME/.gitconfig
 
 # Completion for git in zsh shell
-mkdir -p $HOME/.zsh/functions && cp $HOME/dwarak_dotfiles/git/git-completion.zsh $HOME/.zsh/functions/_git
+mkdir -p $HOME/.zsh/functions && cp $HOME/.dotfilerc/git/git-completion.zsh $HOME/.zsh/functions/_git
 
 
 ##################
@@ -103,23 +103,25 @@ mkdir -p $HOME/.zsh/functions && cp $HOME/dwarak_dotfiles/git/git-completion.zsh
 
 # Pull vim configs over
 touch $HOME/.vimrc
-if [[ -z $(grep "dwarak.vim" $HOME/.vimrc) ]];
-then
-    echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
-fi
+# if [[ -z $(grep "dwarak.vim" $HOME/.vimrc) ]];
+# then
+#     echo ':so $HOME/dwarak_dotfiles/vim/dwarak.vim' >> $HOME/.vimrc
+# fi
 
 # Create colors folder
-mkdir -p $HOME/.vim/colors
+# mkdir -p $HOME/.vim/colors
 
 # Copy themes
-cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
+# cp -R $HOME/dwarak_dotfiles/vim/colors/* $HOME/.vim/colors/
 
 ##################
 
 # Setup Kitty
 mkdir -p $HOME/.config/kitty/
-cp $HOME/dwarak_dotfiles/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
+# cp $HOME/dwarak_dotfiles/kitty/kitty.conf $HOME/.config/kitty/kitty.conf
 
+
+stow *
 
 ###########################
 # Setup command line tools

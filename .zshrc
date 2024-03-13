@@ -1,4 +1,4 @@
-source $HOME/dwarak_dotfiles/sh.rc
+source $HOME/.dotfilerc/sh.rc
 
 setopt PROMPT_SUBST # To execute function inside PS1. Refer this- http://superuser.com/a/142114
 
