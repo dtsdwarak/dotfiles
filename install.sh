@@ -19,7 +19,7 @@ sudo pip install Pygments tldr csvkit pgcli
 # fzf install
 # Install via git to include shell-bindings since it is currently not supported if installed via package manager in Ubuntu
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+yes | ~/.fzf/install
 
 # Pyenv install
 curl https://pyenv.run | bash
@@ -27,27 +27,28 @@ curl https://pyenv.run | bash
 # Install ruby versions
 # For errors with build, check - 
 # https://github.com/rbenv/ruby-build/discussions/2009
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-$HOME/.rbenv/bin/rbenv init - bash
-rbenv install 3.3.0
-rbenv global 3.3.0
+# curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+# $HOME/.rbenv/bin/rbenv init - bash
+# rbenv install 3.3.0
+# rbenv global 3.3.0
 
 # Install Rust Toolchain
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo apt install rust-all
 cargo install bat exa fd-find procs du-dust ripgrep eva lsd
 
 # Install NVM
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
 # Install SDKMan
 
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+# curl -s "https://get.sdkman.io" | bash
+# source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #Copy files
-cp -r dwarak_dotfiles $HOME
+# cp -r dwarak_dotfiles $HOME
 
 # Install configs over Zsh
 # if [[ -z $(grep "dwarak_dotfiles" $HOME/.zshrc) ]];
