@@ -24,6 +24,7 @@
     unstageall = reset
   	staged = diff --cached
     branches=!sh -c '$HOME/dwarak_dotfiles/git/git-branch.sh'
+    bb=!sh -c '$HOME/dwarak_dotfiles/git/better-git-branch.sh'
     ri = "!f() { git rebase -i HEAD~$1; }; f"
     wip = !git add --all && git commit -m 'WIP'
     db = "!f() { git remote show origin | sed -n '/HEAD branch/s/.*: //p'; }; f"
@@ -60,3 +61,7 @@
 	algorithm = histogram
 [init]
 	defaultBranch = main
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
