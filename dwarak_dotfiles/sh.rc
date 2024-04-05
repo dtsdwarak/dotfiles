@@ -23,7 +23,7 @@ source $HOME/dwarak_dotfiles/explorer/explorer.rc
 source $HOME/dwarak_dotfiles/utilities/extract.sh
 source $HOME/dwarak_dotfiles/utilities/kp.sh
 source $HOME/dwarak_dotfiles/utilities/sdkman.rc
-source /opt/local/share/asdf/asdf.sh
+source $HOME/.asdf/asdf.sh
 export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
 
 case $(uname) in
@@ -167,8 +167,5 @@ function PS1_curDir() {
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 eval "$(thefuck --alias)"
