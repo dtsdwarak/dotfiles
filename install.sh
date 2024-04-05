@@ -14,7 +14,7 @@ printf "\n${GREEN}Installing generic dependencies for Ubuntu...${RESET_COLOR}\n\
 sudo apt update && sudo apt upgrade
 sudo apt -y install pydf build-essential libyaml-dev libssl-dev postgresql-client \
 pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux \
-ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf
+ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf dateutils
 
 # fzf install
 # Install via git to include shell-bindings since it is currently not supported if installed via package manager in Ubuntu
