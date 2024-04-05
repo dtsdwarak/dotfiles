@@ -23,7 +23,7 @@ source $HOME/dwarak_dotfiles/explorer/explorer.rc
 source $HOME/dwarak_dotfiles/utilities/extract.sh
 source $HOME/dwarak_dotfiles/utilities/kp.sh
 source $HOME/dwarak_dotfiles/utilities/sdkman.rc
-source $HOME/.cargo/env
+source /opt/local/share/asdf/asdf.sh
 export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
 
 case $(uname) in
@@ -164,26 +164,6 @@ function PS1_curDir() {
     fi
 }
 
-# Load pyenv automatically by appending
-# the following to 
-# ~/.bash_profile if it exists, otherwise ~/.profile (for login shells)
-# and ~/.bashrc (for interactive shells) :
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# Restart your shell for the changes to take effect.
-
-# Load pyenv-virtualenv automatically by adding
-# the following to ~/.bashrc:
-
-eval "$(pyenv virtualenv-init -)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -191,5 +171,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-eval "$($HOME/.rbenv/bin/rbenv init - bash)"
 eval "$(thefuck --alias)"

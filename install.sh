@@ -14,32 +14,22 @@ printf "\n${GREEN}Installing generic dependencies for Ubuntu...${RESET_COLOR}\n\
 sudo apt update && sudo apt upgrade
 sudo apt -y install pydf build-essential libssl-dev postgresql-client pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux rbenv ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf
 # python3 -m ensurepip
-sudo pip install Pygments tldr csvkit pgcli
+sudo pip install Pygments tldr csvkit pgcli pyyaml
 
 # fzf install
 # Install via git to include shell-bindings since it is currently not supported if installed via package manager in Ubuntu
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# Pyenv install
-curl https://pyenv.run | bash
-
-# Install ruby versions
-# For errors with build, check - 
-# https://github.com/rbenv/ruby-build/discussions/2009
-curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-$HOME/.rbenv/bin/rbenv init - bash
-rbenv install 3.3.0
-rbenv global 3.3.0
-
-# Install Rust Toolchain
-
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# TODO
+# Automate installation of asdf plugins/versions for python, ruby, rust and node
+asdf plugin add ruby
+# For ruby version install check https://stackoverflow.com/a/77857095/2981954
+asdf plugin add nodejs
+asdf plugin add python
+asdf plugin add rust
 cargo install bat exa fd-find procs du-dust ripgrep eva lsd
-
-# Install NVM
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+asdf reshim rust # Need to reshim post cargo binary installs https://github.com/code-lever/asdf-rust/issues/14
 
 # Install SDKMan
 

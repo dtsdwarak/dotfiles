@@ -31,10 +31,10 @@ bindkey "\e[1;3D" backward-word # ⌥←
 bindkey "\e[1;3C" forward-word # ⌥→
 
 # Git completion
-zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+# zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
 # `compinit` scans $fpath, so do this before calling it.
-fpath=(~/.zsh/functions $fpath)
-autoload -Uz compinit && compinit
+# fpath=(~/.zsh/functions $fpath)
+
 eval "$(direnv hook zsh)"
 
 HISTSIZE=10000000
@@ -55,8 +55,8 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # Set up the prompt
 
-autoload -Uz promptinit
-promptinit
+# autoload -Uz promptinit
+# promptinit
 
 setopt histignorealldups sharehistory
 setopt interactive_comments
@@ -65,8 +65,12 @@ setopt interactive_comments
 bindkey -e
 
 # Use modern completion system
+# Making this load faster - https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
 autoload -Uz compinit
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 export CLICOLOR=YES
 zstyle ':completion:*' auto-description 'specify: %d'
