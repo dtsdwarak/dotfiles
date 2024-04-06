@@ -16,7 +16,7 @@ function get_backup {
 
 # Install dependencies
 sudo apt update && sudo apt -y upgrade
-sudo apt remove fzf
+sudo apt remove -y fzf
 sudo DEBIAN_FRONTEND=noninteractive apt -y install \
 tzdata \
 pydf build-essential libyaml-dev libssl-dev postgresql-client \
