@@ -14,9 +14,9 @@ function get_backup {
 }
 
 # Install dependencies
-sudo apt update && sudo apt -y upgrade
-sudo apt remove -y fzf
-sudo DEBIAN_FRONTEND=noninteractive apt -y install \
+apt update && apt -y upgrade
+apt remove -y fzf
+DEBIAN_FRONTEND=noninteractive apt -y install \
 tzdata \
 pydf build-essential libyaml-dev libssl-dev postgresql-client \
 pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux \
@@ -88,7 +88,7 @@ asdf install python 3.12.0 || echo "python already installed"
 asdf global python 3.12.0 || echo "python already installed"
 
 printf "\n\n%b Installing pip packages... %b \n" "$GREEN" "$RESET_COLOR"
-sudo pip install Pygments tldr csvkit pgcli pyyaml || echo "All packages already installed"
+pip install Pygments tldr csvkit pgcli pyyaml || echo "All packages already installed"
 
 printf "\n\n%b Installing rust... %b \n" "$GREEN" "$RESET_COLOR"
 asdf plugin add rust || echo "rust already installed"
