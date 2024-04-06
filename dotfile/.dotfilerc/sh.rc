@@ -13,25 +13,25 @@ RESET_COLOR='\033[0m'
 
 export DOCKER_HOST=unix:///var/run/docker.sock
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
-export LESS='-R --use-color -Dd+r$Du+b'
+export LESS="-R --use-color -Dd+r$Du+b"
 
 #=====================================
 # SOURCING OTHER CONFIG FILES
 #=====================================
 
-source $HOME/.dotfilerc/explorer/explorer.rc
-source $HOME/.dotfilerc/utilities/extract.sh
-source $HOME/.dotfilerc/utilities/kp.sh
-source $HOME/.dotfilerc/utilities/sdkman.rc
-source $HOME/.asdf/asdf.sh
+source "$HOME"/.dotfilerc/explorer/explorer.rc
+source "$HOME"/.dotfilerc/utilities/extract.sh
+source "$HOME"/.dotfilerc/utilities/kp.sh
+source "$HOME"/.dotfilerc/utilities/sdkman.rc
+source "$HOME"/.asdf/asdf.sh
 export PATH=$PATH:$HOME/.dotfilerc/utilities/
 
 case $(uname) in
   Linux)
-    source $HOME/.dotfilerc/linux.rc
+    source "$HOME"/.dotfilerc/linux.rc
     ;;
   Darwin)
-    source $HOME/.dotfilerc/mac.rc
+    source "$HOME"/.dotfilerc/mac.rc
     ;;
 esac
 
@@ -94,10 +94,10 @@ fi
 
 # Help
 function help() {
-     printf "\n${BLUE} ================ MAN PAGES ================ ${RESET_COLOR}\n"
-     tldr $1
-     printf "\n${BLUE} ================ EXAMPLES ================ ${RESET_COLOR}\n\n\n\n\n"
-     curl cht.sh/$1
+     printf "\n%b ================ MAN PAGES ================ %b\n" "$BLUE" "$RESET_COLOR"
+     tldr "$1"
+     printf "\n%b ================ EXAMPLES ================ %b\n\n\n\n\n" "$BLUE" "$RESET_COLOR"
+     curl cht.sh/"$1"
  }
 
 
@@ -111,13 +111,13 @@ function pretty_csv {
 ## To start temp server
 pys() {
     if [[ $(python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))' | cut -d'.' -f1) == 2 ]]; then
-        printf "\n${GREEN}Content ready to be served at http://$(hostname):${1:-9000}${RESET_COLOR}\n"
-        python -m SimpleHTTPServer ${1:-9000}
+        printf "\n%bContent ready to be served at http://$(hostname):${1:-9000}%b\n" "$GREEN" "$RESET_COLOR"
+        python -m SimpleHTTPServer "${1:-9000}"
     elif [[ $(python -c 'import sys; print(".".join(map(str, sys.version_info[:3])))' | cut -d'.' -f1) = 3 ]]; then
-        printf "\n${GREEN}Content ready to be served at http://$(hostname):${1:-9000}${RESET_COLOR}\n"
-        python -m http.server ${1:-9000}
+        printf "\n%bContent ready to be served at http://$(hostname):${1:-9000}%b\n" "$GREEN" "$RESET_COLOR"
+        python -m http.server "${1:-9000}"
     else
-        printf "\n${RED}Python version not known. Cannot start a server.${RESET_COLOR}\n"
+        printf "\n%bPython version not known. Cannot start a server.%b\n" "$RED" "$RESET_COLOR"
     fi
 }
 
@@ -130,9 +130,9 @@ localip() {
 function PS1_curDir() {
     curDir=$(pwd | sed -e 's#'"${HOME}"'#~#g')
     pwdPathSize=20
-    if [ "$(echo "$curDir" | wc -c)" -gt $pwdPathSize ];
+    if [ "${#curDir}" -gt $pwdPathSize ];
     then
-        curDir="$( echo $curDir | awk -F'/' '{print $1"/"$2"/.../"$(NF-1)"/"$NF }' )"
+        curDir="$( echo "$curDir" | awk -F'/' '{print $1"/"$2"/.../"$(NF-1)"/"$NF }' )"
     fi
 }
 

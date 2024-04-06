@@ -1,4 +1,4 @@
-source $HOME/.dotfilerc/sh.rc
+source "$HOME"/.dotfilerc/sh.rc
 
 setopt PROMPT_SUBST # To execute function inside PS1. Refer this- http://superuser.com/a/142114
 
@@ -17,7 +17,7 @@ export PS1=$'\e[1;33m$LOGIN_INFO\e[1;32m[$curDir]\e[1;36m $(val=( $(git branch 2
 # For Traversing up the directory structure in zsh
 cd..() {
     dir_val=$(repeat ${1:-1} printf ../)
-    cd $dir_val
+    cd "$dir_val"
 }
 
 # To use Option (ALT) + arrow keys in Terminals
@@ -67,7 +67,7 @@ bindkey -e
 # Use modern completion system
 # Making this load faster - https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+for dump in "$HOME"/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
@@ -90,5 +90,5 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "$HOME"/.fzf.zsh ] && source "$HOME"/.fzf.zsh
 eval "$(fzf --zsh)"

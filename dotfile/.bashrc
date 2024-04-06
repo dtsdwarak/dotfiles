@@ -1,4 +1,4 @@
-source $HOME/.dotfilerc/sh.rc
+source "$HOME"/.dotfilerc/sh.rc
 
 # To execute every time a prompt is set.
 PROMPT_COMMAND='PS1_curDir'
@@ -20,7 +20,7 @@ export PS1='\[\e[1;33m\]$LOGIN_INFO\[\e[1;32m\][$curDir] \[\e[1;36m\]$(val=( $(g
 
 # For Traversing up the directory structure in bash. Thanks to http://stackoverflow.com/a/17030976
 cd..() {
-    cd $(printf '%0.s../' $(seq 1 ${1:-1}))
+    cd $(printf '%0.s../' $(seq 1 "${1:-1}")) || return
 }
 
 # Managing shell history
@@ -30,10 +30,10 @@ export HISTFILESIZE=
 export HISTSIZE=
 
 # Git completion
-source $HOME/.dotfilerc/git/git-completion.bash
+source "$HOME"/.dotfilerc/git/git-completion.bash
 eval "$(direnv hook bash)"
 
-source $HOME/.asdf/completions/asdf.bash
+source "$HOME"/.asdf/completions/asdf.bash
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "$HOME"/.fzf.bash ] && source "$HOME"/.fzf.bash
 eval "$(fzf --bash)"

@@ -1,2 +1,2 @@
-source $HOME/.bashrc
-source ~/.profile
+source "$HOME"/.bashrc
+source "$HOME"/.profile

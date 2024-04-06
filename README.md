@@ -6,7 +6,8 @@
 
 ## Install
 ```
-$ chmod +x install.sh && ./install.sh # Run as sudo
+$ <sudo> make install
+$ make help # For Help options
 ```
 
 ## Catches
