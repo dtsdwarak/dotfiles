@@ -1,6 +1,6 @@
-# Used from https://github.com/xvoland/Extract
-
 #!/bin/bash
+
+# Used from https://github.com/xvoland/Extract
 # function Extract for common file formats
 
 function extract {
@@ -10,7 +10,7 @@ function extract {
     echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
     return 1
  else
-    for n in $@
+    for n in "$@"
     do
       if [ -f "$n" ] ; then
           case "${n%,}" in
