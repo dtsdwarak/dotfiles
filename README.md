@@ -10,12 +10,11 @@ $ chmod +x install.sh && ./install.sh # Run as sudo
 ```
 
 ## Catches
-* Dependency installation handled only for Debian and its downstream distros. Install missing packages if you run a different OS.
-* The dotconfigs also have 3rd party tools buillt-in like [Bit.ly]() and [Pushbullet](). If you'd like to use them, you also need to configure access keys with names ```ACCESS_TOKEN``` and ```PUSH_BULLET_ACCESS_TOKEN``` in your ```.bashrc``` or ```.zshrc``` file, in accordance with whatever shell you use.
+Dependency installation handled only for Debian and its downstream distros. Install missing packages if you run a different OS.
 
 ## To-do
 
-1. Re-factor `install.sh` (OR) remove it altogether to use this with GNU Stow
+1. ~~Re-factor `install.sh` (OR) remove it altogether to use this with GNU Stow~~
 2. Easy way to upgrade the dotfiles installation
 3. Configure profiles like `git` while installation
 

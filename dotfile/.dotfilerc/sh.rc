@@ -126,34 +126,6 @@ localip() {
     ip addr show | grep -w "inet" | tr -s ' ' | awk -F' ' '{print $NF " - " $2}'
 }
 
-# To view json files in pretty format and syntax highlight
-jsonview() {
-    if [ -z "$1" ]; then
-        echo "jsonview: Input file missing. Please provide one."
-    else
-        python -mjson.tool $1 | pygmentize -l json
-    fi
-}
-
-# To shorten urls
-# For more information on Bitly URL shortening, read the documentation https://dev.bitly.com/links.html#v3_shorten
-bitly() {
-    if [ -z "$1" ]; then
-        echo "bitly: Enter URL to shorten"
-    else
-        curl -s "https://api-ssl.bitly.com/v3/shorten?access_token=$ACCESS_TOKEN&longUrl=$1" | python -mjson.tool | grep -w "url"
-    fi
-}
-
-# Pushbullet API push mechanism
-pushb() {
-curl -s --header 'Access-Token: '$PUSH_BULLET_ACCESS_TOKEN \
-     --header 'Content-Type: application/json' \
-     --data-binary '{"body":"'"$2"'","title":"'"$1"'","type":"note"}' \
-     --request POST \
-     https://api.pushbullet.com/v2/pushes > /dev/null
-}
-
 # To execute everytime before a prompt
 function PS1_curDir() {
     curDir=$(pwd | sed -e 's#'"${HOME}"'#~#g')
