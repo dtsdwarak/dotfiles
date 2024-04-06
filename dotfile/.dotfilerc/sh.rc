@@ -19,19 +19,19 @@ export LESS='-R --use-color -Dd+r$Du+b'
 # SOURCING OTHER CONFIG FILES
 #=====================================
 
-source $HOME/dwarak_dotfiles/explorer/explorer.rc
-source $HOME/dwarak_dotfiles/utilities/extract.sh
-source $HOME/dwarak_dotfiles/utilities/kp.sh
-source $HOME/dwarak_dotfiles/utilities/sdkman.rc
+source $HOME/.dotfilerc/explorer/explorer.rc
+source $HOME/.dotfilerc/utilities/extract.sh
+source $HOME/.dotfilerc/utilities/kp.sh
+source $HOME/.dotfilerc/utilities/sdkman.rc
 source $HOME/.asdf/asdf.sh
-export PATH=$PATH:$HOME/dwarak_dotfiles/utilities/
+export PATH=$PATH:$HOME/.dotfilerc/utilities/
 
 case $(uname) in
   Linux)
-    source $HOME/dwarak_dotfiles/linux.rc
+    source $HOME/.dotfilerc/linux.rc
     ;;
   Darwin)
-    source $HOME/dwarak_dotfiles/mac.rc
+    source $HOME/.dotfilerc/mac.rc
     ;;
 esac
 
@@ -74,7 +74,7 @@ alias preview="fzf --preview 'bat {}'"
 alias see='vi $(preview)'
 alias proj='cd $HOME/projects/$(\ls -d $HOME/projects/* | rev | cut -d"/" -f 1 | rev | fzf)'
 alias projects=proj
-export BAT_CONFIG_PATH="$HOME/dwarak_dotfiles/batconfig"
+export BAT_CONFIG_PATH="$HOME/.dotfilerc/batconfig"
 
 # youtube-dl aliases
 
