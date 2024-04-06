@@ -2,6 +2,13 @@
 install: ## Installs dotfiles.
 	./install.sh
 
+check-install: ## Checks dotfile installation within a Ubuntu docker container
+	@podman run --rm -i \
+		--name dotfile-check-install \
+		-v $(CURDIR):/usr/src:ro \
+		--workdir /usr/src \
+		ubuntu ./install.sh
+
 .PHONY: test
 test: shellcheck ## Runs shellcheck tests on dotfiles
 
