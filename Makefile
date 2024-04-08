@@ -2,9 +2,16 @@
 install: ## Installs dotfiles.
 	./install.sh
 
-# If this returns error, try `podman system prune` before running
 check-install: ## Checks dotfile installation within a Debian docker container
-	@podman run --rm -i \
+	@if podman ps >/dev/null 2>&1; then \
+		echo "Podman is available and working"; \
+		DOCKER_RUNTIME='podman'; \
+	else \
+		echo "Podman is not available OR not configured to work correctly"; \
+		DOCKER_RUNTIME='docker'; \
+	fi; \
+	echo "Setting docker runtime to $$DOCKER_RUNTIME"
+	$(DOCKER_RUNTIME) run --rm -i \
 		--name dotfile-check-install \
 		-v $(CURDIR):/usr/src:ro \
 		--workdir /usr/src \
