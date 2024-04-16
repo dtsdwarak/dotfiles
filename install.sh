@@ -20,7 +20,7 @@ DEBIAN_FRONTEND=noninteractive apt -y install \
 tzdata \
 pydf build-essential libyaml-dev libssl-dev postgresql-client \
 pv jq fonts-inconsolata python3-pip i3lock vim htop lighttpd xsel pigz ncdu tmux \
-ruby-build direnv thefuck software-properties-common stow bash zsh coreutils img2pdf dateutils shellcheck
+ruby-build thefuck software-properties-common stow bash zsh coreutils img2pdf dateutils shellcheck
 
 # fzf install
 # Install via git to include shell-bindings since it is currently not supported if installed via package manager in Ubuntu
@@ -99,5 +99,9 @@ printf "\n\n%b Installing rust binaries... %b \n" "$GREEN" "$RESET_COLOR"
 cargo install bat exa fd-find procs du-dust ripgrep eva lsd
 asdf reshim rust # Need to reshim post cargo binary installs https://github.com/code-lever/asdf-rust/issues/14
 
+asdf plugin add direnv || echo "direnv already installed"
+asdf direnv setup --shell zsh --version latest || echo "direnv already installed"
+asdf direnv setup --shell bash --version latest || echo "direnv already installed"
+asdf reshim direnv
 
 printf "\n\n%bDotfile installation successful! %b \n" "$GREEN" "$RESET_COLOR"

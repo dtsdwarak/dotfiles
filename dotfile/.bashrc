@@ -31,7 +31,7 @@ export HISTSIZE=
 
 # Git completion
 source "$HOME"/.dotfilerc/git/git-completion.bash
-eval "$(direnv hook bash)"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
 
 source "$HOME"/.asdf/completions/asdf.bash
 

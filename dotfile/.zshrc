@@ -35,7 +35,7 @@ bindkey "\e[1;3C" forward-word # ⌥→
 # `compinit` scans $fpath, so do this before calling it.
 # fpath=(~/.zsh/functions $fpath)
 
-eval "$(direnv hook zsh)"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
 HISTSIZE=10000000
 SAVEHIST=10000000
