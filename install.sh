@@ -29,13 +29,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && $(yes | ~/.fzf
 # ASDF Install
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0 || echo "asdf already installed"
 
-# Install SDKMan
-if [ ! -d "$HOME/.sdkman" ]; then
-    echo "sdkman could not be found. Installing..."
-    curl -s "https://get.sdkman.io" | bash
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
-fi
-
 printf "\n\n%b Stowing dotfiles... %b \n" "$GREEN" "$RESET_COLOR"
 
 get_backup .bash_profile 
@@ -94,6 +87,9 @@ printf "\n\n%b Installing rust... %b \n" "$GREEN" "$RESET_COLOR"
 asdf plugin add rust || echo "rust already installed"
 asdf install rust 1.77.0 || echo "rust already installed"
 asdf global rust 1.77.0 || echo "rust already installed"
+
+printf "\n\n%b Installing java... %b \n" "$GREEN" "$RESET_COLOR"
+asdf plugin add java || echo "java already installed"
 
 printf "\n\n%b Installing rust binaries... %b \n" "$GREEN" "$RESET_COLOR"
 cargo install bat exa fd-find procs du-dust ripgrep eva lsd

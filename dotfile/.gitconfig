@@ -8,7 +8,7 @@
 [alias]
 	addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
-	slog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    slog = log --color=always --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit 
     url = config --get remote.origin.url
     filediff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
     co = checkout
@@ -29,6 +29,9 @@
     wip = !git add --all && git commit -m 'WIP'
     db = "!f() { git remote show origin | sed -n '/HEAD branch/s/.*: //p'; }; f"
     prom = !sh -c 'git pull -r origin $(git db)'
+    stashlist = !sh -c '$HOME/.dotfilerc/git/git-stash.sh'
+    sl=stashlist
+    genpatch="!sh -c 'GIT_PAGER=cat git format-patch -1 --stdout $(git slog | fzf --multi --ansi --border --multi --info inline-right --layout reverse --marker ▏ --pointer ▌ --prompt ▌ | awk \"{print \\$2}\")'"
 [instaweb]
     httpd = lighttpd
     port = 9999
