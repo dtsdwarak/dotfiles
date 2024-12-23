@@ -11,8 +11,15 @@ function precmd() {
     PS1_curDir
 }
 
+# Define ANSI color variables
+YELLOW=$'\e[1;33m'  # Yellow
+GREEN=$'\e[1;32m'   # Green
+CYAN=$'\e[1;36m'    # Cyan
+RESET=$'\e[0m'      # Reset
+
 # For help refer here: http://www.nparikh.org/unix/prompt.php
-export PS1=$'\e[1;33m$LOGIN_INFO\e[1;32m[$curDir]\e[1;36m $(val=( $(git branch 2>/dev/null | grep "*" | colrm 1 2) ); if [ ! -z "$val" ]; then echo "($val) "; fi)\n\e[1;32m\%# \e[0m'
+export PS1="%{$YELLOW%}\$LOGIN_INFO%{$RESET%}%{$GREEN%}[\$curDir]%{$RESET%}%{$CYAN%} \$(val=\$(git branch 2>/dev/null | grep \"*\" | colrm 1 2); if [[ -n \$val ]]; then echo \"(\$val) \"; fi)%{$RESET%}
+%{$GREEN%}%# %{$RESET%}"
 
 # For Traversing up the directory structure in zsh
 cd..() {

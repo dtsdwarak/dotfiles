@@ -75,7 +75,7 @@ printf "\n\n%b Installing java... %b \n" "$GREEN" "$RESET_COLOR"
 mise use java@corretto-11.0.25.9.1 || echo "java already installed"
 
 printf "\n\n%b Installing rust binaries... %b \n" "$GREEN" "$RESET_COLOR"
-cargo install bat exa fd-find procs du-dust ripgrep eva lsd
+sudo -H -u "$CURRENT_USER" bash -l -c 'cargo install bat exa fd-find procs du-dust ripgrep eva lsd'
 
 mise use direnv || echo "direnv already installed"
 mise reshim direnv
