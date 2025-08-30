@@ -31,9 +31,6 @@ export HISTSIZE=
 
 # Git completion
 source "$HOME"/.dotfilerc/git/git-completion.bash
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
-
-source "$HOME"/.asdf/completions/asdf.bash
 
 [ -f "$HOME"/.fzf.bash ] && source "$HOME"/.fzf.bash
 eval "$(fzf --bash)"

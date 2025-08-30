@@ -23,7 +23,6 @@ source "$HOME"/.dotfilerc/explorer/explorer.rc
 source "$HOME"/.dotfilerc/utilities/extract.sh
 source "$HOME"/.dotfilerc/utilities/kp.sh
 source "$HOME"/.dotfilerc/utilities/sdkman.rc
-source "$HOME"/.asdf/asdf.sh
 export PATH=$PATH:$HOME/.dotfilerc/utilities/
 
 case $(uname) in
