@@ -22,6 +22,7 @@ export LESS="-R --use-color -Dd+r$Du+b"
 source "$HOME"/.dotfilerc/explorer/explorer.rc
 source "$HOME"/.dotfilerc/utilities/extract.sh
 source "$HOME"/.dotfilerc/utilities/kp.sh
+source "$HOME"/.dotfilerc/utilities/cp.rc
 source "$HOME"/.dotfilerc/utilities/sdkman.rc
 export PATH=$PATH:$HOME/.dotfilerc/utilities/
 
