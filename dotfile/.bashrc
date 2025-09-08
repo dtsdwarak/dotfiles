@@ -34,3 +34,6 @@ source "$HOME"/.dotfilerc/git/git-completion.bash
 
 [ -f "$HOME"/.fzf.bash ] && source "$HOME"/.fzf.bash
 eval "$(fzf --bash)"
+
+# Mise installation
+eval "$(mise activate bash)"
