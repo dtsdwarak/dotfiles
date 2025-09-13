@@ -2,13 +2,14 @@
     email = pid1@dwarak.in
 	name = Dwaraka Nath
 [color]
-	ui = true
+    ui = true
 [push]
-	default = simple
+    default = simple
 [alias]
-	addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+    addnw=!sh -c 'git diff -U0 -w --no-color "$@" | git apply --cached --ignore-whitespace --unidiff-zero -'
+    browse="!git slog ${GIT_PREFIX:-.} | fzf --multi --ansi --border --multi --info inline-right --layout reverse --marker ▏ --pointer ▌ --prompt ▌ --preview 'git show --color=always $(echo {} | awk \"{print \\$2}\") | diff-so-fancy'"
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
-    slog = log --color=always --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit 
+    slog = log --color=always --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     url = config --get remote.origin.url
     filediff = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
     co = checkout
@@ -26,45 +27,69 @@
     branches=!sh -c '$HOME/.dotfilerc/git/git-branch.sh'
     bb=!sh -c '$HOME/.dotfilerc/git/better-git-branch.sh'
     ri = "!f() { git rebase -i HEAD~$1; }; f"
-    wip = !git add --all && git commit -m 'WIP'
+    wip = "!f() { \
+        last=$(git log -n1 -E --grep='^WIP [0-9]+$' --pretty=%s 2>/dev/null); \
+        n=${last##* }; \
+        [ -n \"$n\" ] && case $n in (*[!0-9]*) n=0;; esac || n=0; \
+        n=$((n+1)); \
+        git add -A && git commit -m \"WIP $n\"; \
+    }; f"
     db = "!f() { git remote show origin | sed -n '/HEAD branch/s/.*: //p'; }; f"
     prom = !sh -c 'git pull -r origin $(git db)'
     stashlist = !sh -c '$HOME/.dotfilerc/git/git-stash.sh'
     sl=stashlist
     genpatch="!sh -c 'GIT_PAGER=cat git format-patch -1 --stdout $(git slog | fzf --multi --ansi --border --multi --info inline-right --layout reverse --marker ▏ --pointer ▌ --prompt ▌ | awk \"{print \\$2}\")'"
+[blame]
+    date = human
 [instaweb]
     httpd = lighttpd
     port = 9999
     local = false
+    browser = open
 [help]
     autocorrect = 1
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | less --tabs=4 -RFX
     editor = vi
     untrackedCache = true
+[color "blame"]
+    highlightRecent = cyan bold ul
+    highlightRecentGroup = magenta dim
+    highlightOld = yellow reverse
+    highlightOlder = green italic
+    highlightCurrent = red bold blink
+    highlightDefault = white
+[color "branch"]
+    current = green reverse
+    local = yellow
+    remote = red
 [color "status"]
     added = green
     changed = yellow
     untracked = red
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [pull]
     rebase = true
 [diff]
-	algorithm = histogram
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [rerere]
-	enabled = true
+    enabled = true
+    autoupdate = true
 [branch]
 	sort = -committerdate
