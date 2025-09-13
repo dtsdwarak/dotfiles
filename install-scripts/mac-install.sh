@@ -6,4 +6,4 @@ python3 -m ensurepip
 sudo pip3 install Pygments tldr csvkit pgcli pydf pyyaml
 
 ## MacPorts installation
-sudo port -N install bash zsh coreutils findutils wget curl yt-dlp tree gnutar rsync less moreutils inetutils vim mc nmap parallel lscpu watch tmux tmux-pasteboard upower iproute2mac readline img2pdf poppler diffutils pstree gwhich ruby-build grep gsed gawk thefuck micro tre-tree most jless libxkbcommon lf stow mise libyaml tig fzf py-csvkit
+sudo port -N install bash zsh coreutils findutils wget curl yt-dlp tree gnutar rsync less moreutils inetutils vim mc nmap parallel lscpu watch tmux tmux-pasteboard upower iproute2mac readline img2pdf poppler diffutils pstree gwhich ruby-build grep gsed gawk thefuck micro tre-tree most jless libxkbcommon lf stow mise libyaml tig fzf py-csvkit ack
