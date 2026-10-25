@@ -57,13 +57,13 @@ printf "\n\n%b Copied all source files %b \n" "$GREEN" "$RESET_COLOR"
 
 # For ruby version install check https://stackoverflow.com/a/77857095/2981954
 printf "\n\n%b Installing ruby... %b \n" "$GREEN" "$RESET_COLOR"
-mise use ruby@3.3.6 || echo "Ruby already installed"
+mise use ruby@4 || echo "Ruby already installed"
 
 printf "\n\n%b Installing nodejs... %b \n" "$GREEN" "$RESET_COLOR"
-mise use nodejs@20.12.0 || echo "nodejs already installed"
+mise use nodejs@latest || echo "nodejs already installed"
 
 printf "\n\n%b Installing python... %b \n" "$GREEN" "$RESET_COLOR"
-mise use python@3.12.0 || echo "python already installed"
+mise use python@3 || echo "python already installed"
 
 printf "\n\n%b Installing pip packages... %b \n" "$GREEN" "$RESET_COLOR"
 pip install Pygments tldr csvkit pgcli pyyaml || echo "All packages already installed"
@@ -75,7 +75,8 @@ printf "\n\n%b Installing java... %b \n" "$GREEN" "$RESET_COLOR"
 mise use java@corretto-11.0.25.9.1 || echo "java already installed"
 
 printf "\n\n%b Installing rust binaries... %b \n" "$GREEN" "$RESET_COLOR"
-sudo -H -u "$CURRENT_USER" bash -l -c 'cargo install bat exa fd-find procs du-dust ripgrep eva lsd'
+# sudo -H -u "$CURRENT_USER" bash -l -c 'cargo install bat exa fd-find procs du-dust ripgrep eva lsd'
+mise use -g cargo:bat cargo:exa cargo:fd-find cargo:procs cargo:du-dust cargo:ripgrep cargo:eva cargo:lsd 
 
 mise use direnv || echo "direnv already installed"
 mise reshim direnv
